@@ -23,7 +23,7 @@ public class GlobalExceptions {
 		
 	}
 	
-	@ExceptionHandler(Exception.class)
+	@ExceptionHandler(QuizeExceptions.class)
 	public ResponseEntity<MyErrorDetails> QuizeExceptionHandler(QuizeExceptions qz,WebRequest req){
 
 		MyErrorDetails err = new MyErrorDetails();
