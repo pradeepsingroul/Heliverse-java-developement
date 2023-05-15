@@ -13,12 +13,12 @@ import com.heliverse.Models.Quize;
 public interface QuizeRepository extends JpaRepository<Quize, Integer>{
 	
 	//active quize
-	@Query(value = "SELECT * from quize q where CURRENT_DATE() BETWEEN start_Date AND end_Date AND CURRENT_TIME() BETWEEN start_Time AND end_Time;",nativeQuery = true)
+	@Query(value = "SELECT * from quize q where CURRENT_TIMESTAMP() BETWEEN start_Date_Time AND end_Date_Time;",nativeQuery = true)
 	List<Quize> getActiveQuize();
 	
 	
 	//Minute difference betwenn current time and end time
-	@Query(value = "Select TIMESTAMPDIFF(MINUTE,end_Time,CURRENT_TIME()) from quize q where q.quize_Id = :id",nativeQuery = true)
+	@Query(value = "Select TIMESTAMPDIFF(MINUTE,end_Date_Time,CURRENT_TIMESTAMP()) from quize q where q.quize_Id = :id",nativeQuery = true)
 	Integer getTimeDiff( Integer id);
 
 }

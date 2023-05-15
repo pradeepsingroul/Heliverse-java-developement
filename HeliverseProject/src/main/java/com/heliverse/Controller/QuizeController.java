@@ -17,9 +17,10 @@ import com.heliverse.Models.Result;
 import com.heliverse.Services.QuizeService;
 
 import jakarta.annotation.PostConstruct;
+import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/quizes")
+@RequestMapping("/quizzes")
 public class QuizeController {
 
 	@Autowired
@@ -33,14 +34,14 @@ public class QuizeController {
 	}
 	
 	//creating new quize
-	@PostMapping("/create-quize")
-	public ResponseEntity<Quize> createQuize(@RequestBody Quize quize){
+	@PostMapping("")
+	public ResponseEntity<Quize> createQuize(@Valid @RequestBody Quize quize){
 		Quize qz = qService.createQuize(quize);
 		return new ResponseEntity<Quize>(qz,HttpStatus.OK);
 	}
 	
 	//getting all quizes 
-	@GetMapping("/getAll")
+	@GetMapping("/all")
 	public ResponseEntity<List<Quize>> getAllQuizeController(){
 		List<Quize> allQuizeList = qService.getAllQuize();
 		return new ResponseEntity<>(allQuizeList,HttpStatus.OK);

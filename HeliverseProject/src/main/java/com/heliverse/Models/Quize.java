@@ -6,10 +6,13 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Max;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -32,15 +35,17 @@ public class Quize {
 	@ElementCollection
 	private String[] options;
 	
+	@Max(value = 3,message = "please put the valid index")
 	private Integer rightAnswer;
 	
-	private LocalDate startDate;
+	private LocalDateTime startDateTime;
 	
-	private LocalTime startTime;
+	private LocalDateTime endDateTime;
 	
-	private LocalDate endDate;
+	private String status;
 	
-	private LocalTime endTime;
+	
+	
 
 	
 	

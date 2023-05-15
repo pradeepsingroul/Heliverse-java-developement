@@ -22,18 +22,18 @@ public class QuizeServiceIMPL implements QuizeService{
 	
 	@Override
 	public List<Quize> getActiveQuizeService() throws QuizeExceptions {
-		List<Quize> qList = qRepo.getActiveQuize();
-		return qList;
+		List<Quize> qList = qRepo.getActiveQuize(); //finding the quizes
+		return qList; //returning
 	}
 
 
 	@Override
 	public Quize createQuize(Quize quize) throws QuizeExceptions {
-		Optional<Quize> opt =  qRepo.findById(quize.getQuizeId());
-		if(opt.isPresent()) {
-			throw new QuizeExceptions("Quize does not exits with id : "+quize.getQuizeId());
+		Optional<Quize> opt =  qRepo.findById(quize.getQuizeId()); //finding the quize
+		if(opt.isPresent()) { //checking it exist or not
+			throw new QuizeExceptions("Quize already exits with id : "+quize.getQuizeId());
 		}else {
-			return qRepo.save(quize);
+			return qRepo.save(quize); //returning
 		}
 		
 	}
@@ -41,16 +41,16 @@ public class QuizeServiceIMPL implements QuizeService{
 
 	@Override
 	public List<Quize> getAllQuize() throws QuizeExceptions {
-		List<Quize> qList = qRepo.findAll();
-		return qList;
+		List<Quize> qList = qRepo.findAll(); //finding the quizes
+		return qList; //returning
 	}
 
 
 	@Override
 	public Quize getByID(Integer id) throws QuizeExceptions {
-		Optional<Quize> opt =  qRepo.findById(id);
-		if(opt.isPresent()) {
-			return opt.get();
+		Optional<Quize> opt =  qRepo.findById(id); //finding the quize
+		if(opt.isPresent()) {  //checking it exist or not
+			return opt.get(); //returning
 		}else {
 			throw new QuizeExceptions("Quize does not exits with id : "+id);
 		}
@@ -60,15 +60,15 @@ public class QuizeServiceIMPL implements QuizeService{
 	@Override
 	public Result getResultByID(Integer id) throws QuizeExceptions {
 		// TODO Auto-generated method stub
-		Optional<Quize> opt =  qRepo.findById(id);
+		Optional<Quize> opt =  qRepo.findById(id);                       		//finding the quize
 		
-		if(opt.isPresent()) {
-			Quize resultQuize =  opt.get();
-			int minutes = qRepo.getTimeDiff(resultQuize.getQuizeId());
-			if(minutes>=5) {
-				String answer = resultQuize.getOptions()[resultQuize.getRightAnswer()];
-				Result result = new Result(resultQuize.getQuestion(),answer );
-				return result;
+		if(opt.isPresent()) {                                             		//checking it exist or not
+			Quize resultQuize =  opt.get();                              		 //get quize
+			int minutesDiff = qRepo.getTimeDiff(resultQuize.getQuizeId());      //calculating the minute difference between end time and current time
+			if(minutesDiff>=5) {                                               
+				String answer = resultQuize.getOptions()[resultQuize.getRightAnswer()]; //finding the answer of quize question
+				Result result = new Result(resultQuize.getQuestion(),answer );			//creating result class
+				return result;															//returnig result class
 			}else {
 				throw new QuizeExceptions("Quize in in runnig state/inactive state so we can't produce the result");
 			}
