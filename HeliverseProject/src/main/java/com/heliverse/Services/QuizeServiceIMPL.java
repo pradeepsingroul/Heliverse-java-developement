@@ -27,7 +27,13 @@ public class QuizeServiceIMPL implements QuizeService{
 
 	@Override
 	public Quize createQuize(Quize quize) throws QuizeExceptions {
-		return qRepo.save(quize);
+		Optional<Quize> opt =  qRepo.findById(quize.getQuizeId());
+		if(opt.isPresent()) {
+			throw new QuizeExceptions("Quize does not exits with id : "+quize.getQuizeId());
+		}else {
+			return qRepo.save(quize);
+		}
+		
 	}
 
 
