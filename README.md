@@ -6,33 +6,28 @@ This is the basic project where User can create Quize, User can get the result ,
 
 ## Features && ## Rest Api
  
- ```new Quiz 
-PostMethod-
+new Quiz 
+ ```PostMethod-
 http://localhost:8080/quizzes
 ```
 
-```Get quize by id
-GetMethod-
+Get quize by id
+```GetMethod-
 http://localhost:8080/quizzes/{Id}
 ```
 
-```Get result by id
-GetMethod-
-http://localhost:8080/api/v1/genre-movies-with-subtotals
-```
-
-```update runtime
-GetMethod-
+Get result by id
+```GetMethod-
 http://localhost:8080/quizzes/{Id}/result
 ```
 
-``` Get all quize
-GetMethod-
+ Get all quize
+```GetMethod-
 http://localhost:8080/quizzes/all
 ```
 
-``` Get active quize
-GetMethod-
+Get active quize
+``` GetMethod-
 http://localhost:8080/quizzes/active
 ```
 
