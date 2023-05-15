@@ -37,6 +37,12 @@ public class QuizeController {
 		return new ResponseEntity<Quize>(qz,HttpStatus.OK);
 	}
 	
+	@GetMapping("/getAll")
+	public ResponseEntity<List<Quize>> getAllQuizeController(){
+		List<Quize> allQuizeList = qService.getAllQuize();
+		return new ResponseEntity<>(allQuizeList,HttpStatus.OK);
+	}
+	
 	
 	
 
