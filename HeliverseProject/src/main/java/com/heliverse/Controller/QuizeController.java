@@ -31,6 +31,13 @@ public class QuizeController {
 		return new ResponseEntity<>(activeQuizelList,HttpStatus.OK);
 	}
 	
+	@PostMapping("/create-quize")
+	public ResponseEntity<Quize> createQuize(@RequestBody Quize quize){
+		Quize qz = qService.createQuize(quize);
+		return new ResponseEntity<Quize>(qz,HttpStatus.OK);
+	}
+	
+	
 	
 
 	
