@@ -43,7 +43,11 @@ public class QuizeController {
 		return new ResponseEntity<>(allQuizeList,HttpStatus.OK);
 	}
 	
-	
+	@GetMapping("/{id}/result")
+	public ResponseEntity<Quize> getResultByID(@PathVariable Integer id){
+		Quize quize = qService.getByID(id);
+		return new ResponseEntity<>(quize,HttpStatus.OK);
+	}
 	
 
 	
