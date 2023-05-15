@@ -21,5 +21,17 @@ import jakarta.annotation.PostConstruct;
 @RequestMapping("/quizes")
 public class QuizeController {
 
+	@Autowired
+	private QuizeService qService;
+	
+	
+	@GetMapping("/active")
+	public ResponseEntity<List<Quize>> getActiveQuizeController(){
+		List<Quize> activeQuizelList = qService.getActiveQuizeService();
+		return new ResponseEntity<>(activeQuizelList,HttpStatus.OK);
+	}
+	
+	
+
 	
 }
