@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.heliverse.Exceptions.QuizeExceptions;
@@ -66,7 +67,7 @@ public class QuizeServiceIMPL implements QuizeService{
 			Quize resultQuize =  opt.get();                              		 //get quize
 			int minutesDiff = qRepo.getTimeDiff(resultQuize.getQuizeId());      //calculating the minute difference between end time and current time
 			if(minutesDiff>=5) {                                               
-				String answer = resultQuize.getOptions()[resultQuize.getRightAnswer()]; //finding the answer of quize question
+				String answer = resultQuize.getOptions().get(resultQuize.getRightAnswer()); //finding the answer of quize question
 				Result result = new Result(resultQuize.getQuestion(),answer );			//creating result class
 				return result;															//returnig result class
 			}else {
@@ -79,5 +80,8 @@ public class QuizeServiceIMPL implements QuizeService{
 		}
 		
 	}
+	
+	
+	
 
 }
