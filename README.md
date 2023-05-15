@@ -2,8 +2,7 @@
 This is the basic project where User can create Quize, User can get the result , get the quize, Etc in this this project i implemented the basic CRUD operations;
 
 ## ER Diagram
-![ER File](https://github.com/pradeepsingroul/Heliverse-java-developement/assets/104360276/23f1d52b-45fd-4231-a60b-8aea84b16dbf)
-
+![ER File](https://github.com/pradeepsingroul/Heliverse-java-developement/assets/104360276/14b6e63a-c941-4c51-960e-e182c9cb3164)
 
 ## Features && ## Rest Api
  
