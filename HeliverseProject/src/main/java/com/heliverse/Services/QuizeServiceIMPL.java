@@ -1,5 +1,6 @@
 package com.heliverse.Services;
 
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.heliverse.Exceptions.QuizeExceptions;
 import com.heliverse.Models.Quize;
+import com.heliverse.Models.Result;
 import com.heliverse.Repository.QuizeRepository;
 
 @Service
@@ -52,6 +54,30 @@ public class QuizeServiceIMPL implements QuizeService{
 		}else {
 			throw new QuizeExceptions("Quize does not exits with id : "+id);
 		}
+	}
+
+
+	@Override
+	public Result getResultByID(Integer id) throws QuizeExceptions {
+		// TODO Auto-generated method stub
+		Optional<Quize> opt =  qRepo.findById(id);
+		
+		if(opt.isPresent()) {
+			Quize resultQuize =  opt.get();
+			int minutes = qRepo.getTimeDiff(resultQuize.getQuizeId());
+			if(minutes>=5) {
+				String answer = resultQuize.getOptions()[resultQuize.getRightAnswer()];
+				Result result = new Result(resultQuize.getQuestion(),answer );
+				return result;
+			}else {
+				throw new QuizeExceptions("Quize in in runnig state/inactive state so we can't produce the result");
+			}
+	
+			
+		}else {
+			throw new QuizeExceptions("Quize does not exits with id : "+id);
+		}
+		
 	}
 
 }
