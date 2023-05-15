@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.heliverse.Models.Quize;
+import com.heliverse.Models.Quiz;
 import com.heliverse.Models.Result;
 import com.heliverse.Services.QuizeService;
 
@@ -28,29 +28,29 @@ public class QuizeController {
 	
 	//getting the active quizes
 	@GetMapping("/active") 
-	public ResponseEntity<List<Quize>> getActiveQuizeController(){
-		List<Quize> activeQuizelList = qService.getActiveQuizeService();
+	public ResponseEntity<List<Quiz>> getActiveQuizeController(){
+		List<Quiz> activeQuizelList = qService.getActiveQuizeService();
 		return new ResponseEntity<>(activeQuizelList,HttpStatus.OK);
 	}
 	
 	//creating new quize
 	@PostMapping()
-	public ResponseEntity<Quize> createQuize(@Valid @RequestBody Quize quize){
-		Quize qz = qService.createQuize(quize);
-		return new ResponseEntity<Quize>(qz,HttpStatus.OK);
+	public ResponseEntity<Quiz> createQuize(@Valid @RequestBody Quiz quize){
+		Quiz qz = qService.createQuize(quize);
+		return new ResponseEntity<Quiz>(qz,HttpStatus.OK);
 	}
 	
 	//getting all quizes 
 	@GetMapping("/all")
-	public ResponseEntity<List<Quize>> getAllQuizeController(){
-		List<Quize> allQuizeList = qService.getAllQuize();
+	public ResponseEntity<List<Quiz>> getAllQuizeController(){
+		List<Quiz> allQuizeList = qService.getAllQuize();
 		return new ResponseEntity<>(allQuizeList,HttpStatus.OK);
 	}
 	
 	//getting the quize by id
 	@GetMapping("/{id}")
-	public ResponseEntity<Quize> getByID(@PathVariable Integer id){
-		Quize quize = qService.getByID(id);
+	public ResponseEntity<Quiz> getByID(@PathVariable Integer id){
+		Quiz quize = qService.getByID(id);
 		return new ResponseEntity<>(quize,HttpStatus.OK);
 	}
 	

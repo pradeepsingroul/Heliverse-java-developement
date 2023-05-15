@@ -3,22 +3,22 @@ package com.heliverse.Services;
 import java.util.List;
 
 import com.heliverse.Exceptions.QuizeExceptions;
-import com.heliverse.Models.Quize;
+import com.heliverse.Models.Quiz;
 import com.heliverse.Models.Result;
 
 public interface QuizeService {
 	
 	//active quize
-	List<Quize> getActiveQuizeService() throws QuizeExceptions;
+	List<Quiz> getActiveQuizeService() throws QuizeExceptions;
 
 	//new quize
-	Quize createQuize(Quize quize) throws QuizeExceptions;
+	Quiz createQuize(Quiz quize) throws QuizeExceptions;
 	
 	//get all quize
-	List<Quize> getAllQuize() throws QuizeExceptions;
+	List<Quiz> getAllQuize() throws QuizeExceptions;
 	
 	//get quize by id
-	Quize getByID(Integer id) throws QuizeExceptions;
+	Quiz getByID(Integer id) throws QuizeExceptions;
 	
 	//get quize result by id
 	Result getResultByID(Integer id) throws QuizeExceptions;

@@ -28,10 +28,10 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Quize {
+public class Quiz {
 	
 	@Id
-	private Integer quizeId;
+	private Integer quizId;
 	
 	private String question;
 	

@@ -9,7 +9,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.heliverse.Exceptions.QuizeExceptions;
-import com.heliverse.Models.Quize;
+import com.heliverse.Models.Quiz;
 import com.heliverse.Models.Result;
 import com.heliverse.Repository.QuizeRepository;
 
@@ -22,17 +22,17 @@ public class QuizeServiceIMPL implements QuizeService{
 	
 	
 	@Override
-	public List<Quize> getActiveQuizeService() throws QuizeExceptions {
-		List<Quize> qList = qRepo.getActiveQuize(); //finding the quizes
+	public List<Quiz> getActiveQuizeService() throws QuizeExceptions {
+		List<Quiz> qList = qRepo.getActiveQuize(); //finding the quizes
 		return qList; //returning
 	}
 
 
 	@Override
-	public Quize createQuize(Quize quize) throws QuizeExceptions {
-		Optional<Quize> opt =  qRepo.findById(quize.getQuizeId()); //finding the quize
+	public Quiz createQuize(Quiz quize) throws QuizeExceptions {
+		Optional<Quiz> opt =  qRepo.findById(quize.getQuizId()); //finding the quize
 		if(opt.isPresent()) { //checking it exist or not
-			throw new QuizeExceptions("Quize already exits with id : "+quize.getQuizeId());
+			throw new QuizeExceptions("Quize already exits with id : "+quize.getQuizId());
 		}else {
 			return qRepo.save(quize); //returning
 		}
@@ -41,15 +41,15 @@ public class QuizeServiceIMPL implements QuizeService{
 
 
 	@Override
-	public List<Quize> getAllQuize() throws QuizeExceptions {
-		List<Quize> qList = qRepo.findAll(); //finding the quizes
+	public List<Quiz> getAllQuize() throws QuizeExceptions {
+		List<Quiz> qList = qRepo.findAll(); //finding the quizes
 		return qList; //returning
 	}
 
 
 	@Override
-	public Quize getByID(Integer id) throws QuizeExceptions {
-		Optional<Quize> opt =  qRepo.findById(id); //finding the quize
+	public Quiz getByID(Integer id) throws QuizeExceptions {
+		Optional<Quiz> opt =  qRepo.findById(id); //finding the quize
 		if(opt.isPresent()) {  //checking it exist or not
 			return opt.get(); //returning
 		}else {
@@ -61,11 +61,11 @@ public class QuizeServiceIMPL implements QuizeService{
 	@Override
 	public Result getResultByID(Integer id) throws QuizeExceptions {
 		// TODO Auto-generated method stub
-		Optional<Quize> opt =  qRepo.findById(id);                       		//finding the quize
+		Optional<Quiz> opt =  qRepo.findById(id);                       		//finding the quize
 		
 		if(opt.isPresent()) {                                             		//checking it exist or not
-			Quize resultQuize =  opt.get();                              		 //get quize
-			int minutesDiff = qRepo.getTimeDiff(resultQuize.getQuizeId());      //calculating the minute difference between end time and current time
+			Quiz resultQuize =  opt.get();                              		 //get quize
+			int minutesDiff = qRepo.getTimeDiff(resultQuize.getQuizId());      //calculating the minute difference between end time and current time
 			if(minutesDiff>=5) {                                               
 				String answer = resultQuize.getOptions().get(resultQuize.getRightAnswer()); //finding the answer of quize question
 				Result result = new Result(resultQuize.getQuestion(),answer );			//creating result class
