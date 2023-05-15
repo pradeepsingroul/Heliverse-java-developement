@@ -1,7 +1,12 @@
 package com.heliverse.Models;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.List;
+import java.util.Objects;
 
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -24,13 +29,20 @@ public class Quize {
 	
 	private String question;
 	
-	@Embedded
+	@ElementCollection
 	private String[] options;
 	
 	private Integer rightAnswer;
 	
-	private LocalDateTime startDate;
+	private LocalDate startDate;
 	
-	private LocalDateTime endtDate;
+	private LocalTime startTime;
+	
+	private LocalDate endDate;
+	
+	private LocalTime endTime;
+
+	
+	
 
 }
