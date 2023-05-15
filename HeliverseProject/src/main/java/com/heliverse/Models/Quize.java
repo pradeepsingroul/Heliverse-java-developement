@@ -35,7 +35,7 @@ public class Quize {
 	
 	private String question;
 	
-	@JsonProperty(access = Access.WRITE_ONLY)
+//	@JsonProperty(access = Access.WRITE_ONLY)
 	@ElementCollection
 	private List<String> options;
 	

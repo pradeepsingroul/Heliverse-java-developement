@@ -23,13 +23,19 @@ public class StatusUpdation {
 	@Autowired
 	private QuizeRepository qRepository;
 	
+	private List<Quize> quizeForUpdation;
+	
+	@PostConstruct
+	public void initializing() {
+		quizeForUpdation = qRepository.findAll();
+	}
+	
 	LocalDateTime currentTime  = LocalDateTime.now();
 	
-	@Scheduled(cron = "0 * * * * *") // cron job it will update the status eveery minutes
+	@Scheduled(cron = "0 * * * * *") // cron job it will update the status every minutes
 	public void updateStatus() {
-		List<Quize> az = qRepository.findAll();
 		
-		for(Quize q : az) {
+		for(Quize q : quizeForUpdation) {
 			if (currentTime.isBefore(q.getStartDateTime())) { 
                 q.setStatus("inactive");
             } else if (currentTime.isAfter(q.getStartDateTime()) && currentTime.isBefore(q.getEndDateTime())) {
