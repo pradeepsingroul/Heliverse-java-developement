@@ -8,6 +8,9 @@ import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Value;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -32,8 +35,9 @@ public class Quize {
 	
 	private String question;
 	
+	@JsonProperty(access = Access.WRITE_ONLY)
 	@ElementCollection
-	private String[] options;
+	private List<String> options;
 	
 	@Max(value = 3,message = "please put the valid index")
 	private Integer rightAnswer;
